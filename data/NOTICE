@@ -1,0 +1,22 @@
+emucheck data NOTICE
+
+The snapshot files in this folder are derived data. They contain only operation and service names,
+counts, file paths and severities taken from the public sources below. No source code or
+documentation text of those projects is copied.
+
+Sources (pinned for this snapshot)
+
+1. aws/aws-emulator v1.0.489, commit b30808c9e1b2a6d025e5a0a9af64946404ff0905 (scores.json.gz, open issue record
+   headers, handler file names). License: CC0-1.0 (vendor/ excluded, Apache-2.0).
+   https://github.com/aws/aws-emulator
+2. aws/aws-emulator-evaluation-suite, commit 4df2823bafface2ada35f482c07ff6668cc078e1 (manifest.jsonl).
+   License: CC0-1.0.
+   https://github.com/aws/aws-emulator-evaluation-suite
+3. botocore 1.44.4 (service and operation names from service-2.json).
+   License: Apache-2.0.
+   https://pypi.org/project/botocore/
+
+emucheck is an unofficial tool and is not affiliated with or endorsed by AWS.
+
+Built at 2026-11-17T10:59:45.018Z by scripts/fetch-data.mjs.
+data/name-overrides.json is hand-written by emucheck (MIT).

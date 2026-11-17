@@ -1,0 +1,9 @@
+{
+  "Resources": {
+    "Orders": { "Type": "AWS::DynamoDB::Table", "Properties": {} },
+    "Notify": { "Type": "AWS::Lambda::Function", "Properties": {} },
+    "NotifyLogs": { "Type": "AWS::Logs::LogGroup", "Properties": {} },
+    "Machine": { "Type": "AWS::StepFunctions::StateMachine", "Properties": {} },
+    "Hook": { "Type": "Custom::Notify", "Properties": {} }
+  }
+}
