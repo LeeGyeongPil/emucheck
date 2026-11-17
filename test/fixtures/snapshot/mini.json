@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "release": "v1.0.489",
+    "commit": "b30808c9e1b2a6d025e5a0a9af64946404ff0905",
+    "scoredAt": "2026-11-17T09:17:02+00:00",
+    "manifestCommit": "4df2823bafface2ada35f482c07ff6668cc078e1",
+    "botocore": "1.44.4",
+    "builtAt": "2026-11-17T11:00:00.000Z",
+    "units": 43548,
+    "unparsedIssues": 239
+  },
+  "services": {
+    "s3": {
+      "serviceId": "S3", "js": "s3", "ns": "s3", "endpointPrefix": "s3",
+      "ops": ["AbortMultipartUpload", "CompleteMultipartUpload", "CreateMultipartUpload", "GetObject", "ListObjectsV2", "PutObject", "SelectObjectContent", "UploadPart", "WriteGetObjectResponse"],
+      "emulator": true,
+      "emuOps": ["AbortMultipartUpload", "CompleteMultipartUpload", "CreateMultipartUpload", "GetObject", "ListObjectsV2", "PutObject", "UploadPart", "WriteGetObjectResponse"],
+      "fidelity": { "pass": 900, "fail": 100, "skipped": 0 }
+    },
+    "dynamodb": {
+      "serviceId": "DynamoDB", "js": "dynamodb", "ns": "dynamodb", "endpointPrefix": "dynamodb",
+      "ops": ["DescribeTable", "GetItem", "PutItem", "Query", "Scan", "TransactWriteItems"],
+      "emulator": true,
+      "emuOps": ["DescribeTable", "GetItem", "PutItem", "Query", "Scan", "TransactWriteItems"],
+      "fidelity": { "pass": 837, "fail": 210, "skipped": 0 }
+    },
+    "sqs": {
+      "serviceId": "SQS", "js": "sqs", "ns": "sqs", "endpointPrefix": "sqs",
+      "ops": ["ReceiveMessage", "SendMessage"],
+      "emulator": true,
+      "emuOps": ["ReceiveMessage", "SendMessage"],
+      "fidelity": { "pass": 10, "fail": 3, "skipped": 0 }
+    },
+    "stepfunctions": {
+      "serviceId": "SFN", "js": "sfn", "ns": "sfn", "endpointPrefix": "states",
+      "ops": ["StartExecution"],
+      "emulator": true,
+      "emuOps": ["StartExecution"],
+      "fidelity": { "pass": 473, "fail": 105, "skipped": 0 }
+    },
+    "logs": {
+      "serviceId": "CloudWatch Logs", "js": "cloudwatch-logs", "ns": "cloudwatchlogs", "endpointPrefix": "logs",
+      "ops": ["PutLogEvents"],
+      "emulator": true,
+      "emuOps": ["PutLogEvents"],
+      "fidelity": { "pass": 5, "fail": 0, "skipped": 0 }
+    },
+    "ecr": {
+      "serviceId": "ECR", "js": "ecr", "ns": "ecr", "endpointPrefix": "api.ecr",
+      "ops": ["GetAccountSetting"],
+      "emulator": true,
+      "emuOps": ["GetAccountSetting"],
+      "fidelity": { "pass": 7, "fail": 0, "skipped": 0 }
+    },
+    "rds": {
+      "serviceId": "RDS", "js": "rds", "ns": "rds", "endpointPrefix": "rds",
+      "ops": ["DescribeDBInstances"],
+      "emulator": true,
+      "emuOps": ["DescribeDBInstances"],
+      "fidelity": { "pass": 20, "fail": 2, "skipped": 0 }
+    },
+    "lambda": {
+      "serviceId": "Lambda", "js": "lambda", "ns": "lambda", "endpointPrefix": "lambda",
+      "ops": ["Invoke"],
+      "emulator": true,
+      "emuOps": ["Invoke"],
+      "fidelity": { "pass": 762, "fail": 500, "skipped": 0 }
+    },
+    "sts": {
+      "serviceId": "STS", "js": "sts", "ns": "sts", "endpointPrefix": "sts",
+      "ops": ["GetCallerIdentity"],
+      "emulator": true,
+      "emuOps": ["GetCallerIdentity"],
+      "fidelity": { "pass": 30, "fail": 1, "skipped": 0 }
+    },
+    "ses": {
+      "serviceId": "SES", "js": "ses", "ns": "ses", "endpointPrefix": "email",
+      "ops": ["SendEmail"],
+      "emulator": false
+    },
+    "kms": {
+      "serviceId": "KMS", "js": "kms", "ns": "kms", "endpointPrefix": "kms",
+      "ops": ["Encrypt"],
+      "emulator": true,
+      "emuOps": ["Encrypt"],
+      "fidelity": { "pass": 40, "fail": 4, "skipped": 0 }
+    }
+  },
+  "ops": {
+    "dynamodb:PutItem": {
+      "wire": { "pass": 484, "fail": 19, "failedUnits": ["dynamodb-attribute-set-null-member-rejected"] },
+      "beh": { "pass": 837, "fail": 210, "skipped": 0, "checks": 1047, "samples": [{ "path": "behavioral/dynamodb/check_put_item_conditions.py", "outcome": "fail" }] }
+    },
+    "dynamodb:GetItem": {
+      "wire": { "pass": 120, "fail": 0, "failedUnits": [] }
+    },
+    "dynamodb:Query": {
+      "beh": { "pass": 50, "fail": 0, "skipped": 0, "checks": 50, "samples": [{ "path": "behavioral/dynamodb/check_query_basic.py", "outcome": "pass" }] }
+    },
+    "s3:PutObject": {
+      "wire": { "pass": 300, "fail": 0, "failedUnits": [] }
+    },
+    "s3:WriteGetObjectResponse": {
+      "stub": "service-com-amazonaws-s3-amazons3/src/ops/write_get_object_response.rs"
+    },
+    "sqs:SendMessage": {
+      "wire": { "pass": 0, "fail": 3, "failedUnits": ["sqs-send-message-fifo-dedup", "sqs-send-message-delay"] }
+    },
+    "stepfunctions:StartExecution": {
+      "beh": { "pass": 473, "fail": 105, "skipped": 0, "checks": 578, "samples": [{ "path": "behavioral/stepfunctions/check_start_execution_input.py", "outcome": "fail" }] }
+    },
+    "ecr:GetAccountSetting": {
+      "wire": { "pass": 4, "fail": 0, "failedUnits": [] },
+      "issues": [{ "file": "20261022T002237Z-ecr-getaccountsetting-stub.md", "severity": "HIGH", "kind": "NotImplemented" }]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{"check_id": "s3.upload-check", "operations": ["s3:GetObject", "s3:PutObject"], "path": "behavioral/s3/check_upload.py", "service": "s3"}
+{"check_id": "s3.get-check", "operations": ["s3:GetObject"], "path": "behavioral/s3/check_get.py", "service": "s3"}
+{"check_id": "ecr.settings", "operations": ["ecr:GetAccountSetting"], "path": "behavioral/ecr/check_settings.py", "service": "ecr"}

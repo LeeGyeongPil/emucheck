@@ -1,0 +1,14 @@
+{"commit": "c0ffee0000000000000000000000000000000000", "schemaVersion": 1, "scoredAt": "2026-01-01T00:00:00+00:00", "units": [
+ {"kind": "wire", "outcome": "pass", "unitId": "s3-put", "services": ["com.amazonaws.s3#AmazonS3"],
+  "detail": {"operation": "PutObject", "steps": [{"key": "task#1", "operation": "PutObject", "outcome": "pass"}, {"key": "task#2", "operation": "PutObject", "outcome": "pass"}]}},
+ {"kind": "wire", "outcome": "fail", "unitId": "s3-put-fail", "services": ["com.amazonaws.s3#AmazonS3"],
+  "detail": {"operation": "PutObject", "failedStep": 2, "steps": [{"key": "task#1", "operation": "PutObject", "outcome": "pass"}, {"key": "task#2", "operation": "PutObject", "outcome": "mismatch"}]}},
+ {"kind": "wire", "outcome": "pass", "unitId": "ddb-put", "services": ["com.amazonaws.dynamodb#DynamoDB_20120810"],
+  "detail": {"steps": [{"key": "task#1", "operation": "PutItem", "outcome": "pass"}]}},
+ {"kind": "wire", "outcome": "fail", "unitId": "nosuch-wire", "services": ["com.amazonaws.nosuchsvc#Nosuch"],
+  "detail": {"steps": [{"key": "task#1", "operation": "Foo", "outcome": "error"}]}},
+ {"kind": "behavioral", "outcome": "fail", "unitId": "s3.upload-check", "services": ["com.amazonaws.s3#AmazonS3"], "detail": {"checkId": "s3.upload-check"}},
+ {"kind": "behavioral", "outcome": "pass", "unitId": "s3.get-check", "services": ["com.amazonaws.s3#AmazonS3"], "detail": {"checkId": "s3.get-check"}},
+ {"kind": "behavioral", "outcome": "skipped", "unitId": "ecr.settings", "services": ["com.amazonaws.ecr#AmazonEC2ContainerRegistry_V20150921"], "detail": {"checkId": "ecr.settings"}},
+ {"kind": "behavioral", "outcome": "pass", "unitId": "_smoke.cli-happy-path", "services": ["com.amazonaws.s3#AmazonS3"], "detail": {"checkId": "_smoke.cli-happy-path"}}
+]}

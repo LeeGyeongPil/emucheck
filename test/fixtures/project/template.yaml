@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  Queue:
+    Type: AWS::SQS::Queue
+  Fn:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Environment:
+        Variables:
+          QUEUE_URL: !Ref Queue
+          QUEUE_ARN: !GetAtt Queue.Arn
+          NAME: !Sub "${AWS::StackName}-fn"
+          JOINED: !Join ["-", [a, !Ref Queue]]
+  Logs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${Fn}"
+  Hook:
+    Type: Custom::Thing
+Outputs:
+  Url:
+    Value: !GetAtt Queue.QueueName

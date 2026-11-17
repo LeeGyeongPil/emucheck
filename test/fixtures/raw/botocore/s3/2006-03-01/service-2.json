@@ -1,0 +1,1 @@
+{"metadata":{"serviceId":"S3","endpointPrefix":"s3"},"operations":{"PutObject":{},"GetObject":{},"SelectObjectContent":{},"WriteGetObjectResponse":{}}}

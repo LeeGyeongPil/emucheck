@@ -1,0 +1,26 @@
+# Offline tests and the example run on the two supported Node.js lines; no AWS account or network data is used.
+name: ci
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 1"   # every Monday: catch dependency or runtime changes early
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["22", "24"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Example run (bundled snapshot, never fails the job)
+        run: node dist/cli.js check examples/sample-app --fail-on none

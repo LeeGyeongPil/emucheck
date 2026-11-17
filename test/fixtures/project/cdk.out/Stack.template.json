@@ -1,0 +1,8 @@
+{
+  "Resources": {
+    "Table": { "Type": "AWS::DynamoDB::Table", "Properties": {} },
+    "Fn": { "Type": "AWS::Lambda::Function", "Properties": {} },
+    "Logs": { "Type": "AWS::Logs::LogGroup", "Properties": {} },
+    "Custom": { "Type": "Custom::Thing", "Properties": {} }
+  }
+}
