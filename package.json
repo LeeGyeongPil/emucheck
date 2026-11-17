@@ -1,0 +1,64 @@
+{
+  "name": "emucheck",
+  "version": "0.1.0",
+  "description": "Preflight check: which AWS SDK calls in your Node/Python/IaC project the local AWS emulator can actually serve, graded per call site from pinned public evidence.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeeGyeongPil/emucheck.git"
+  },
+  "homepage": "https://github.com/LeeGyeongPil/emucheck#readme",
+  "bugs": {
+    "url": "https://github.com/LeeGyeongPil/emucheck/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "emucheck": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "examples",
+    "README.md",
+    "README.ko.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": "^22.18.0 || >=24.11.0"
+  },
+  "keywords": [
+    "aws",
+    "emulator",
+    "localstack",
+    "boto3",
+    "aws-sdk",
+    "sarif",
+    "preflight",
+    "static-analysis"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build",
+    "test": "vitest run",
+    "start": "npm run build && node dist/cli.js check examples/sample-app --fail-on none",
+    "fetch-data": "node scripts/fetch-data.mjs"
+  },
+  "dependencies": {
+    "@babel/parser": "8.1.2",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "typescript": "6.0.3",
+    "vitest": "5.1.0"
+  }
+}
